@@ -8,7 +8,8 @@ function thv{
 	}
 }
 //sas on.
-lock throttle to 1.
+wait until throttle = 1.
+wait 3.
 stage.
 wait until stage:ready and ship:partstagged("rd180")[0]:thrust>=0.9*ship:maxthrust.
 stage.
@@ -34,7 +35,6 @@ when ship:q<=0.00005*oldq then{
 	set flgt to time:seconds+5.
 }
 when time:seconds>=flgt then stage.
-when ship:altitude>=45000 then PROCESSOR("guidance"):CONNECTION:SENDMESSAGE("1").
 lock throttle to thv().
 until ship:partstagged("rd180")[0]:thrust<=0.
 lock throttle to 1.
