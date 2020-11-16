@@ -2,7 +2,7 @@
 
 ## About the Project
 
-You can find out about it [here.](https://www.overleaf.com/project/5fb1242f6183a1674d10441b)
+You can find out about it [here.](https://www.overleaf.com/read/pzhjnsyhxzjh)
 
 ## Test it on KSP using KRPC C++ and KOS
 
