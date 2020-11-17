@@ -7,9 +7,7 @@ function thv{
 		else return val.
 	}
 }
-//sas on.
-wait until throttle = 1.
-wait 3.
+lock throttle to 1.
 stage.
 wait until stage:ready and ship:partstagged("rd180")[0]:thrust>=0.9*ship:maxthrust.
 stage.
@@ -24,8 +22,8 @@ until ship:q<oldq{
 }
 set oldq1 to mach.
 set thrt to throttle.
-lock throttle to thrt+(1-thrt)*(mach-oldq1)/(1.6-oldq1).
-wait until mach>=1.6.
+lock throttle to thrt+(1-thrt)*(mach-oldq1)/(1.9-oldq1).
+wait until mach>=1.9.
 lock throttle to 1.
 wait until ship:partstagged("srb")[0]:resources[0]:amount<=0.
 stage.
@@ -39,6 +37,7 @@ lock throttle to thv().
 until ship:partstagged("rd180")[0]:thrust<=0.
 lock throttle to 1.
 stage.
+set steeringmanager:rollts to 2.
 rcs on.
 set ship:control:fore to 1.
 wait 2.
@@ -46,4 +45,7 @@ stage.
 wait until ship:partstagged("rl10")[0]:thrust>=0.9*ship:partstagged("rl10")[0]:maxthrust.
 set ship:control:fore to 0.
 set ship:control:neutralize to true.
-wait until 0.
+wait 5.
+set ship:partstagged("rl10")[0]:gimbal:lock to true.
+set ship:partstagged("rl10")[1]:gimbal:lock to true.
+wait 500.
