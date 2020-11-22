@@ -7,12 +7,15 @@ function thv{
 		else return val.
 	}
 }
+wait until throttle = 1.
+wait 2.
 lock throttle to 1.
 stage.
 wait until stage:ready and ship:partstagged("rd180")[0]:thrust>=0.9*ship:maxthrust.
 stage.
 lock mach to 10*sqrt(ship:q/ship:sensors:pres/0.7).
 wait until mach>=0.8.
+print 0.5+(1-mach)*2.5.
 lock throttle to 0.5+(1-mach)*2.5.
 set oldq to ship:q.
 until ship:q<oldq{
@@ -35,17 +38,21 @@ when ship:q<=0.00005*oldq then{
 when time:seconds>=flgt then stage.
 lock throttle to thv().
 until ship:partstagged("rd180")[0]:thrust<=0.
-lock throttle to 1.
+unlock throttle.
 stage.
-set steeringmanager:rollts to 2.
 rcs on.
 set ship:control:fore to 1.
-wait 2.
+wait 2.5.
 stage.
 wait until ship:partstagged("rl10")[0]:thrust>=0.9*ship:partstagged("rl10")[0]:maxthrust.
 set ship:control:fore to 0.
 set ship:control:neutralize to true.
-wait 5.
-set ship:partstagged("rl10")[0]:gimbal:lock to true.
-set ship:partstagged("rl10")[1]:gimbal:lock to true.
-wait 500.
+// wait until ship:partstagged("rl10")[0]:thrust <= 0.
+// set orbH to 300000.
+// lock vx to sqrt(ship:velocity:orbit:mag*ship:velocity:orbit:mag-ship:verticalspeed*ship:verticalspeed).
+// set vT to sqrt(398600441800000/(6371000+orbH)).
+// lock tth to arctan(-ship:verticalspeed/(vT-vx)).
+// lock steering to heading(arccos(-0.47882041*sin(ship:geoposition:lng+80.599756418184)),tth).
+// set ship:control:fore to 1.
+// wait until (ship:periapsis+ship:apoapsis)>=2*orbH.
+// set ship:control:fore to 0.
