@@ -2,7 +2,7 @@
 
 ## Project demo
 
-You can find the project demo [here.](https://youtu.be/K8VO1M5nfRU). Also to know more see the PDF in the repository.
+You can find the project demo [here.](https://youtu.be/K8VO1M5nfRU) Also to know more see the PDF in the repository.
 
 ## Test it on KSP using KRPC C++ and KOS
 
